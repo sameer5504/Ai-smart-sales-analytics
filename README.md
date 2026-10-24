@@ -114,17 +114,3 @@ python -m pytest tests backend/tests
 cd frontend && npm test
 ```
 
-## My contributions
-
-I worked across the data pipeline, the frontend and the delivery tooling:
-
-- **Column mapping**: column-name aliases, automatic column matching, the mapping contract, and the manual column-mapping review screen with the data preview and cleaning summary
-- **Dashboard**: total revenue KPI and the interactive forecast visualization
-- **Reports**: report generation, storage and download
-- **DevOps**: CI/CD pipeline, lint and format enforcement in CI, and the manual deployment packaging with static frontend serving
-
-## Team
-
-Built as a team project during a software engineering training program by:
-
-Samir Ali · Hana Izzdeen · Maen Foqaha · Alzahra Nassif · Omar Kmail · Omar Haj Daoud · Ahmad Nasasra
