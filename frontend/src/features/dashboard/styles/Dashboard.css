@@ -1,0 +1,314 @@
+.dashboard-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    font-family: var(--font-latin);
+}
+
+/* --- Actions --- */
+
+.dashboard-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
+}
+
+/* --- Filter bar --- */
+
+.dashboard-filter-bar {
+    display: flex;
+    padding: var(--sp-4);
+    background: var(--n-0);
+    border: 1px solid var(--n-100);
+    border-radius: var(--r-lg);
+    box-shadow: var(--e1);
+    margin-bottom: var(--sp-6);
+}
+
+.dashboard-filter-bar .sales-performance-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--sp-6);
+    width: 100%;
+}
+
+.dashboard-filter-bar .sales-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+}
+
+.dashboard-filter-bar .sales-filter-label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--n-500);
+}
+
+.dashboard-filter-bar .sales-granularity-control {
+    display: inline-flex;
+    align-items: stretch;
+    height: 36px;
+    box-sizing: border-box;
+    border: 1px solid var(--n-200);
+    border-radius: var(--r-md, 8px);
+    padding: 2px;
+    background: var(--n-50);
+    overflow: hidden;
+}
+
+.dashboard-filter-bar .sales-granularity-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 14px;
+    font-size: 13px;
+    font-weight: 500;
+    border: none !important;
+    border-radius: var(--r-sm, 6px) !important;
+    background: transparent !important;
+    color: var(--n-600) !important;
+    cursor: pointer;
+    box-shadow: none !important;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.dashboard-filter-bar .sales-granularity-button-active {
+    background: rgba(59, 130, 246, 0.12) !important;
+    color: var(--accent-700, #1d4ed8) !important;
+    font-weight: 600;
+}
+
+.dashboard-filter-bar .sales-date-input {
+    height: 36px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    font-size: 13px;
+    border: 1px solid var(--n-200);
+    border-radius: var(--r-md, 8px);
+    color: var(--n-800);
+    background: var(--n-0);
+}
+
+.dashboard-filter-bar .sales-date-input:focus {
+    outline: none;
+    border-color: var(--accent-400, #60a5fa);
+}
+
+/* --- KPI cards --- */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-6);
+}
+
+.kpi-card {
+    background: var(--n-0);
+    border: 1px solid var(--n-100);
+    border-radius: var(--r-lg);
+    padding: var(--sp-4);
+    box-shadow: var(--e1);
+}
+
+.kpi-card-unavailable {
+    background: var(--unavailable-bg);
+    border-color: var(--unavailable-border);
+}
+
+.kpi-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-2);
+}
+
+.kpi-label {
+    margin: 0 0 var(--sp-2) 0;
+    color: var(--n-600);
+    font-size: 12.5px;
+    font-weight: 500;
+}
+
+.kpi-value {
+    margin: 0 0 var(--sp-2) 0;
+    color: var(--n-800);
+    font-size: 22px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.kpi-value-unavailable {
+    color: var(--unavailable);
+    font-size: 18px;
+}
+
+.kpi-unavailable-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--n-500);
+    background: var(--n-50);
+    border: 1px solid var(--n-200);
+    border-radius: var(--r-full);
+    padding: 2px 8px;
+}
+
+.kpi-preview-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--n-0);
+    background: var(--n-600);
+    border-radius: var(--r-full);
+    padding: 2px 8px;
+}
+
+.kpi-preview-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--n-0);
+    background: var(--n-600);
+    border-radius: var(--r-full);
+    padding: 2px 8px;
+}
+
+.kpi-unavailable-reason {
+    margin: 0 0 var(--sp-2) 0;
+    color: var(--n-500);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.kpi-note {
+    margin: 0 0 var(--sp-1, 4px) 0;
+    color: var(--n-400);
+    font-size: 11px;
+    font-style: italic;
+}
+
+.kpi-period {
+    margin: 0;
+    color: var(--n-400);
+    font-size: 11px;
+}
+
+/* --- Charts / product cards --- */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-6);
+}
+
+.chart-card,
+.top-products-card {
+    background: var(--n-0);
+    border: 1px solid var(--n-100);
+    border-radius: var(--r-lg);
+    padding: var(--sp-4);
+    box-shadow: var(--e1);
+}
+
+.chart-title {
+    margin: 0 0 var(--sp-3) 0;
+    color: var(--n-800);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.top-products-bottom-title {
+    margin-top: 16px;
+}
+
+.top-products-loading,
+.top-products-error {
+    color: var(--text-muted, #888);
+    font-size: 0.9rem;
+    padding: 8px 0;
+}
+
+.top-products-unavailable {
+    opacity: 0.85;
+}
+
+/* --- Top products: rank badges + animated bars --- */
+
+.top-product-row {
+    display: grid;
+    grid-template-columns: 20px 110px 1fr 70px;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-3);
+}
+
+.top-product-rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--n-0);
+    flex-shrink: 0;
+}
+
+.top-product-rank-top {
+    background: var(--chart-1, #2563eb);
+}
+
+.top-product-rank-bottom {
+    background: var(--n-400);
+}
+
+.top-product-name {
+    color: var(--n-700);
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.top-product-bar-track {
+    height: 10px;
+    background: var(--n-50);
+    border-radius: var(--r-sm);
+    overflow: hidden;
+}
+
+.top-product-bar-fill {
+    height: 100%;
+    border-radius: var(--r-sm);
+    transition: width 0.6s ease;
+}
+
+.top-product-bar-fill-top {
+    background: linear-gradient(
+        90deg,
+        var(--chart-1, #2563eb),
+        var(--chart-3, #60a5fa)
+    );
+}
+
+.top-product-bar-fill-bottom {
+    background: var(--n-300);
+}
+
+.top-product-value {
+    text-align: right;
+    color: var(--n-600);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}

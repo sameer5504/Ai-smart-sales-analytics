@@ -1,0 +1,130 @@
+.file-upload-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    font-family: var(--font-latin);
+}
+
+.file-upload-dropzone {
+    position: relative;
+    border: 1px solid var(--n-100);
+    border-radius: var(--r-lg);
+    padding: var(--sp-8) var(--sp-6);
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--n-0);
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.file-upload-dropzone:hover {
+    border-color: var(--primary-300);
+    background-color: var(--primary-50);
+}
+
+.file-upload-dropzone.dragging {
+    border-color: var(--primary-600);
+    background-color: var(--primary-50);
+}
+
+.file-upload-dropzone p {
+    margin: 0;
+    color: var(--n-500);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.file-upload-filename {
+    font-weight: 600;
+    color: var(--n-800) !important;
+    font-size: 14px;
+}
+
+.file-upload-error {
+    margin-top: var(--sp-3);
+    padding: var(--sp-2) var(--sp-3);
+    background-color: var(--critical-bg);
+    border: 1px solid var(--critical-border);
+    border-radius: var(--r-md);
+    color: var(--critical);
+    font-size: 13px;
+    text-align: center;
+}
+/* --- Currency selector (added to FileUpload.css) --- */
+
+.file-upload-currency {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-upload-currency-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.file-upload-currency-group {
+    display: inline-flex;
+    gap: 8px;
+    padding: 4px;
+    background: var(--surface-muted, #f3f4f6);
+    border-radius: 12px;
+}
+
+.file-upload-currency-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 84px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background: transparent;
+    cursor: pointer;
+    transition:
+        background-color 0.15s ease,
+        box-shadow 0.15s ease,
+        color 0.15s ease;
+}
+
+.file-upload-currency-button:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.file-upload-currency-code {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+}
+
+.file-upload-currency-sublabel {
+    font-size: 11px;
+    color: var(--text-secondary, #6b7280);
+}
+
+.file-upload-currency-button-active {
+    background: #ffffff;
+    border-color: var(--accent, #2563eb);
+    box-shadow: 0 1px 3px rgba(37, 99, 235, 0.15);
+}
+
+.file-upload-currency-button-active .file-upload-currency-code {
+    color: var(--accent, #2563eb);
+}
+
+.file-upload-currency-hint {
+    font-size: 12px;
+    color: var(--text-secondary, #9ca3af);
+    margin: 0;
+}

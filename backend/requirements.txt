@@ -1,0 +1,39 @@
+fastapi==0.115.0
+uvicorn==0.30.6
+python-dotenv==1.0.1
+pydantic==2.13.4
+pandas==2.2.2
+numpy<2.5  # 2.5 deprecates the timedelta unit pandas 2.2 uses internally
+openpyxl==3.1.5
+holidays==0.102
+lightgbm==4.5.0
+scikit-learn==1.7.2  # required by lightgbm's LGBMRegressor (sklearn API)
+joblib==1.4.2
+python-multipart==0.0.9
+gunicorn==23.0.0
+
+# Test dependencies
+pytest==8.3.2
+pytest-asyncio==1.3.0
+httpx==0.28.1
+passlib[bcrypt]
+# passlib 1.7.4 reads bcrypt.__about__.__version__, which bcrypt removed in
+# 4.1. On bcrypt 5.x that leaves passlib's backend half-initialised and every
+# hash_password() call raises, so registration and login fail outright. Pinned
+# until passlib ships a release that supports the newer bcrypt.
+bcrypt==4.0.1
+psycopg[binary]==3.2.3
+PyJWT==2.9.0
+openai==2.53.0
+azure-identity==1.25.3
+azure-keyvault-secrets==4.11.1
+ruff==0.12.10
+azure-storage-blob==12.30.1
+
+# Optional, needed only to run notebooks/revenue_forecasting_analysis.ipynb.
+# The application and the test suite do not use them; test_prophet_model skips
+# itself when prophet is absent.
+#   prophet==1.3.0
+#   shap==0.51.0
+#   matplotlib==3.11.1
+#   xgboost==3.2.0    # section 6.2 only; that cell skips itself if absent

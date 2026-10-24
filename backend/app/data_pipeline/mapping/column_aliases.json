@@ -1,0 +1,46 @@
+{
+  "transaction_date": {
+    "required": true,
+    "label": "Transaction Date",
+    "aliases": ["date", "order date", "sales date", "transaction date", "invoice date", "purchase date"]
+  },
+  "order_id": {
+  "required": true,
+  "label": "Order ID",
+  "aliases": [
+    "order id",
+    "order no",
+    "order number",
+    "invoice",
+    "invoice no",
+    "invoice number",
+    "receipt no",
+    "transaction id"
+  ]
+},
+  "product_id": {
+    "required": true,
+    "label": "Product ID",
+    "aliases": ["product id", "sku", "item code", "product code", "item id"]
+  },
+  "product_name": {
+    "required": true,
+    "label": "Product Name",
+    "aliases": ["product", "item", "product name", "item name", "description", "product description"]
+  },
+  "quantity": {
+    "required": true,
+    "label": "Quantity",
+    "aliases": ["qty", "quantity", "units", "units sold", "qty sold", "no of units"]
+  },
+  "unit_price": {
+    "required": true,
+    "label": "Unit Price",
+    "aliases": ["price", "unit price", "selling price", "price per unit", "rate"]
+  },
+  "category": {
+    "required": false,
+    "label": "Category",
+    "aliases": ["category", "product category", "type", "product type", "department"]
+  }
+}

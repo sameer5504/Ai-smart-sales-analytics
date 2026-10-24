@@ -1,0 +1,77 @@
+.state-message {
+    max-width: 420px;
+    margin: 80px auto 0;
+    padding: var(--sp-8);
+    background: var(--n-0);
+    border: 1px solid var(--n-100);
+    border-radius: var(--r-xl);
+    box-shadow: var(--e1);
+    text-align: center;
+    font-family: var(--font-latin);
+}
+
+.state-message-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto var(--sp-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r-full);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.state-message-title {
+    color: var(--n-800);
+    font-size: 1.1rem;
+    margin: 0 0 var(--sp-2);
+}
+
+.state-message-text {
+    color: var(--n-500);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0 0 var(--sp-6);
+}
+
+.state-message-text:last-child {
+    margin-bottom: 0;
+}
+
+.state-message--unavailable .state-message-icon {
+    background: var(--unavailable-bg);
+    border: 1px solid var(--unavailable-border);
+    color: var(--unavailable);
+}
+
+.state-message--critical .state-message-icon {
+    background: var(--critical-bg);
+    border: 1px solid var(--critical-border);
+    color: var(--critical);
+}
+
+.state-message--warning .state-message-icon {
+    background: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    color: var(--warning);
+}
+
+.state-message--info .state-message-icon {
+    background: var(--info-bg);
+    border: 1px solid var(--primary-100);
+    color: var(--primary-600);
+}
+
+.state-message--loading .state-message-icon {
+    background: var(--info-bg);
+    border: 3px solid var(--primary-100);
+    border-top-color: var(--primary-600);
+    animation: state-message-spin 0.7s linear infinite;
+}
+
+@keyframes state-message-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

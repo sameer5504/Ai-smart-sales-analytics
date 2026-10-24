@@ -1,0 +1,98 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+backend/.venv/
+backend/venv/
+
+# Python tools and caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---------- Environment variables ----------
+.env
+.env.*
+!.env.example
+
+# ---------- Frontend / Node.js ----------
+node_modules/
+frontend/node_modules/
+
+dist/
+frontend/dist/
+frontend/vite.config.js.timestamp-*.mjs
+.vite/
+*.timestamp-*.mjs
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---------- Uploaded files ----------
+backend/uploads/
+
+# ---------- Saved reports ----------
+# Written per user at runtime by app/reports/service.py, the same way
+# uploads are: generated data, never source.
+backend/reports/
+
+# ---------- Manual deployment artifacts ----------
+backend-deploy.zip
+backend-deploy.zip.bak
+backend/static/
+
+# ---------- IDEs ----------
+.vscode/
+.idea/
+*.code-workspace
+
+# ---------- Operating system ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Logs ----------
+*.log
+
+# Large / local datasets (not committed)
+online_retail_II.xlsx
+data/
+backend/data/
+
+# Generated forecasting artifacts (not committed)
+*_revenue.csv
+backend/notebooks/automl_*.csv
+*.joblib
+models/
+.ipynb_checkpoints/
+
+# The exception: the served revenue model is committed so that a clone, and any
+# deployment zip built from one, has the model the forecast endpoint needs. It is
+# 353 KB and retrains deterministically, so versioning it here costs little. The
+# directory has to be re-included before the file inside it can be.
+!backend/models/
+!backend/models/revenue_model.joblib
+
+# Notebook exports (regenerated from the .ipynb)
+backend/notebooks/*.html
+backend/notebooks/*.pdf
+error_vs_history.png
+actual_vs_forecast.png
+prophet_components.png
+train_test_forecast.png
+future_forecast.png
+
+# main ignores backend/notebooks/ wholesale. That is not used here: the two
+# notebooks in that directory are committed research, and the rules above
+# already exclude what actually needs excluding from it - the source workbook
+# and the generated CSVs and exports.

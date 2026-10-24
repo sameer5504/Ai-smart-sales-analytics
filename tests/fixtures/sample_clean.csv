@@ -1,0 +1,5 @@
+transaction_date,order_id,product_id,product_name,quantity,unit_price,category
+2026-01-05,1001,P-11,Blue Mug,3,12.50,Kitchen
+2026-01-05,1001,P-12,Green Mug,1,12.50,Kitchen
+2026-01-06,1002,P-11,Blue Mug,2,12.50,Kitchen
+2026-01-06,1003,P-20,Wall Clock,1,45.00,Home

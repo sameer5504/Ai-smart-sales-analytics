@@ -1,0 +1,14 @@
+{
+  "recognised": [
+    {"column": "Order Date", "suggested_field": "transaction_date", "confidence": 0.9},
+    {"column": "Qty", "suggested_field": "quantity", "confidence": 0.9}
+  ],
+  "ambiguous": [
+    {"column": "Sale Amt", "suggested_field": "unit_price", "confidence": 0.82}
+  ],
+  "unrecognised": [
+    {"column": "Notes", "suggested_field": null, "confidence": 0.6}
+  ],
+  "unmapped_required_fields": ["product_id"],
+  "ready_for_analysis": false
+}

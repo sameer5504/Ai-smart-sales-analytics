@@ -1,0 +1,94 @@
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* اسم المشروع + المربع */
+.page-header-logo {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 3px;
+    background: var(--primary-600);
+    margin-right: 10px;
+    vertical-align: middle;
+    box-shadow: 0 0 0 4px var(--primary-50);
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.75;
+    }
+}
+
+/* Profile button */
+.profile-nav-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border: 1px solid var(--n-100);
+    border-radius: 999px;
+    background: var(--n-0);
+    color: var(--n-700);
+    font-family: var(--font-latin);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.profile-nav-button:hover {
+    transform: translateY(-2px);
+    background: var(--primary-50);
+    border-color: var(--primary-300);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
+}
+
+.profile-nav-button:active {
+    transform: translateY(0);
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--primary-100);
+    color: var(--primary-600);
+    font-size: 13px;
+    transition: transform 0.3s ease;
+}
+
+.profile-nav-button:hover .profile-icon {
+    transform: rotate(12deg) scale(1.08);
+}
+.upload-next-step {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+}
+
+.upload-next-step-text {
+    color: var(--n-700);
+    font-size: 0.92rem;
+    margin: 0;
+}

@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+set -e
+
+echo "Running frontend fixes..."
+
+cd frontend
+npm run lint:fix
+npm run format
+
+echo "Running backend fixes..."
+
+cd ../backend
+.venv/Scripts/ruff.exe check . --fix
+.venv/Scripts/ruff.exe format .
+
+cd ..
+
+
+git add .
+
+echo "Running validation..."
+
+cd frontend
+npm run lint
+npm run build
+
+cd ../backend
+.venv/Scripts/ruff.exe check .
+.venv/Scripts/python.exe -m pytest

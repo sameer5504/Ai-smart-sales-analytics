@@ -1,0 +1,132 @@
+.my-files-page {
+    padding: var(--sp-8) var(--sp-6);
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.my-files-page__title {
+    margin: 0 0 var(--sp-1);
+    font-family: var(--font-latin);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--n-900);
+}
+
+.my-files-page__subtitle {
+    margin: 0 0 var(--sp-6);
+    font-family: var(--font-latin);
+    font-size: 14px;
+    color: var(--n-500);
+}
+
+.my-files-page__state {
+    font-family: var(--font-latin);
+    font-size: 14px;
+    color: var(--n-500);
+    padding: var(--sp-4) 0;
+}
+
+.my-files-page__state--error {
+    color: var(--critical);
+}
+
+.my-files-table-wrap {
+    background: var(--n-0);
+    border: 1px solid var(--n-100);
+    border-radius: var(--r-lg);
+    box-shadow: var(--e1);
+    overflow: hidden;
+}
+
+.my-files-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-latin);
+}
+
+.my-files-table thead th {
+    text-align: left;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--n-400);
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px solid var(--n-100);
+    background: var(--n-25);
+}
+
+.my-files-table tbody tr {
+    border-bottom: 1px solid var(--n-50);
+}
+
+.my-files-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.my-files-table tbody tr:hover {
+    background: var(--n-25);
+}
+
+.my-files-table td {
+    padding: var(--sp-3) var(--sp-4);
+    font-size: 14px;
+    color: var(--n-800);
+    white-space: nowrap;
+}
+
+.my-files-table__muted {
+    color: var(--n-500);
+    font-variant-numeric: var(--num);
+}
+
+.my-files-table__name-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-latin);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--n-800);
+    cursor: pointer;
+    text-align: left;
+}
+
+.my-files-table__name-button:hover {
+    color: var(--primary-600);
+    text-decoration: underline;
+}
+
+.my-files-table__actions {
+    display: flex;
+    gap: var(--sp-2);
+    justify-content: flex-end;
+}
+
+.my-files-table__open-button,
+.my-files-table__delete-button {
+    height: var(--ctl-sm);
+    padding: 0 var(--sp-3);
+    border-radius: var(--r-md);
+    font-family: var(--font-latin);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--n-300);
+    background: var(--n-0);
+    color: var(--n-700);
+}
+
+.my-files-table__open-button:hover {
+    background: var(--primary-50);
+    border-color: var(--primary-300);
+    color: var(--primary-700);
+}
+
+.my-files-table__delete-button {
+    border-color: var(--critical-border);
+    color: var(--critical);
+}
+
+.my-files-table__delete-button:hover {
+    background: var(--critical-bg);
+}

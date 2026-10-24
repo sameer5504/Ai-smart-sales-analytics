@@ -1,0 +1,51 @@
+.report-generate {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--sp-2);
+}
+
+.report-generate-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-3) var(--sp-5);
+    background: var(--primary-600);
+    color: var(--n-0);
+    border: 1px solid var(--primary-600);
+    border-radius: var(--r-md);
+    font-family: var(--font-latin);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.report-generate-button:hover:not(:disabled) {
+    background: var(--primary-700);
+    border-color: var(--primary-700);
+}
+
+.report-generate-button:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+}
+
+.report-generate-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.report-generate-hint {
+    margin: 0;
+    font-family: var(--font-latin);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--n-500);
+}
+
+.report-generate-hint-error {
+    color: var(--critical);
+}

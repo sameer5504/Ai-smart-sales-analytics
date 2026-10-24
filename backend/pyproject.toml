@@ -1,0 +1,18 @@
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E","F","I","UP","B"]
+ignore = ["B008"]
+
+[tool.ruff.lint.per-file-ignores]
+# Notebooks are research artifacts, not application code. Chained statements,
+# imports after a configuration line, short lambdas and closures over a loop
+# variable that are called inside the same iteration are ordinary notebook style.
+# Real defects (undefined names, unused imports, the rest of bugbear) are still
+# reported.
+"*.ipynb" = ["E401", "E402", "E701", "E702", "I001", "E731", "B023"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

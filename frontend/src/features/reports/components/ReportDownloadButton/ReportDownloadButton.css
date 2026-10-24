@@ -1,0 +1,54 @@
+.report-download {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--sp-2);
+}
+
+.report-download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-3) var(--sp-5);
+    background: var(--n-0);
+    color: var(--n-800);
+    border: 1px solid var(--n-300);
+    border-radius: var(--r-md);
+    font-family: var(--font-latin);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.report-download-button:hover:not(:disabled) {
+    background: var(--n-50);
+    border-color: var(--n-400);
+}
+
+.report-download-button:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+    border-color: var(--primary-600);
+}
+
+.report-download-button:disabled {
+    background: var(--n-100);
+    border-color: transparent;
+    color: var(--n-400);
+    cursor: not-allowed;
+}
+
+.report-download-hint {
+    margin: 0;
+    font-family: var(--font-latin);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--n-500);
+}
+
+.report-download-hint-error {
+    color: var(--critical);
+}

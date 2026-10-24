@@ -1,0 +1,112 @@
+.sidebar {
+    position: sticky;
+    top: 0;
+    width: 280px;
+    min-width: 280px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background: var(--n-0);
+    border-right: 1px solid var(--n-100);
+    padding: var(--sp-5) var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: var(--font-latin);
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-1) var(--sp-2) var(--sp-6);
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar-logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--primary-600);
+    border-radius: var(--r-md);
+    display: inline-block;
+}
+
+.sidebar-logo-text {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--n-900);
+}
+
+.sidebar-section {
+    margin-bottom: var(--sp-5);
+}
+
+.sidebar-section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--n-400);
+    padding: 0 var(--sp-2);
+    margin: 0 0 var(--sp-2);
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: 9px var(--sp-2);
+    border-radius: var(--r-md);
+    color: var(--n-700);
+    text-decoration: none;
+    font-size: 0.92rem;
+    cursor: pointer;
+}
+
+.sidebar-link:hover {
+    background: var(--n-50);
+}
+
+.sidebar-link-active {
+    background: var(--primary-50);
+    color: var(--primary-700);
+    font-weight: 600;
+}
+
+.sidebar-link-disabled {
+    color: var(--n-300);
+    cursor: default;
+}
+
+.sidebar-link-disabled:hover {
+    background: transparent;
+}
+
+.sidebar-link-icon {
+    font-size: 1rem;
+    width: 18px;
+    text-align: center;
+}
+
+.sidebar-badge-soon {
+    margin-left: auto;
+    font-size: 0.65rem;
+    background: var(--n-100);
+    color: var(--n-500);
+    border-radius: var(--r-md);
+    padding: 2px var(--sp-2);
+}
+
+.sidebar-footnote {
+    margin-top: auto;
+    font-size: 0.75rem;
+    color: var(--n-400);
+    line-height: 1.5;
+    padding: 0 var(--sp-2);
+}
+.sidebar-empty-note {
+    padding: 8px 10px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--n-500);
+}

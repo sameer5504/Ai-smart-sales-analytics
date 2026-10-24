@@ -1,0 +1,89 @@
+:root {
+    /* neutrals */
+    --n-0: #ffffff;
+    --n-25: #fafbfc;
+    --n-50: #f4f6f8;
+    --n-100: #e8ecf0;
+    --n-200: #d6dce3;
+    --n-300: #b8c2cc;
+    --n-400: #8d99a6;
+    --n-500: #6b7784;
+    --n-600: #4e5a66;
+    --n-700: #38424c;
+    --n-800: #232b33;
+    --n-900: #12181d;
+
+    /* primary */
+    --primary-50: #e8f3f7;
+    --primary-100: #cde6ef;
+    --primary-300: #7fbbd1;
+    --primary-600: #17607a;
+    --primary-700: #114e63;
+    --primary-800: #0d3f51;
+
+    /* financial direction */
+    --fin-up: #14684e;
+    --fin-up-bg: #e6f4ee;
+    --fin-up-border: #a9dcc8;
+    --fin-down: #9a4c3c;
+    --fin-down-bg: #fbede9;
+    --fin-down-border: #edcec6;
+    --fin-flat: #4e5a66;
+    --fin-flat-bg: #f4f6f8;
+
+    /* system state */
+    --critical: #b3261e;
+    --critical-bg: #fdecea;
+    --critical-surface: #fef7f6;
+    --critical-border: #f5c9c4;
+    --warning: #8a5a00;
+    --warning-bg: #fff6e0;
+    --warning-surface: #fffcf4;
+    --warning-border: #f0d9a8;
+    --info: var(--primary-600);
+    --info-bg: var(--primary-50);
+    --info-surface: #f7fbfd;
+    --unavailable: #6b7784;
+    --unavailable-bg: #fcfdfd;
+    --unavailable-border: #d6dce3;
+
+    /* charts */
+    --chart-1: #0072b2;
+    --chart-2: #e69f00;
+    --chart-3: #009e73;
+    --chart-4: #cc79a7;
+    --chart-5: #56b4e9;
+    --chart-grid: #e8ecf0;
+    --chart-axis: #8d99a6;
+
+    /* type */
+    --font-latin: "IBM Plex Sans", system-ui, sans-serif;
+    --font-ar: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    --num: tabular-nums lining-nums; /* font-variant-numeric on every figure */
+
+    /* space, radius, elevation */
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 20px;
+    --sp-6: 24px;
+    --sp-8: 32px;
+    --sp-12: 48px;
+    --sp-18: 72px;
+    --r-sm: 2px;
+    --r-md: 6px;
+    --r-lg: 10px;
+    --r-xl: 16px;
+    --r-full: 999px;
+    --e1: 0 1px 2px rgba(18, 24, 29, 0.05);
+    --e2: 0 4px 12px -2px rgba(18, 24, 29, 0.1);
+    --e3: 0 12px 32px -8px rgba(18, 24, 29, 0.18);
+    --ring: 0 0 0 1px var(--n-0), 0 0 0 4px rgb(23 96 122 / 0.32);
+
+    /* control sizing */
+    --ctl-sm: 32px;
+    --ctl-md: 40px;
+    --ctl-lg: 48px;
+}

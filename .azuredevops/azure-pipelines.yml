@@ -1,0 +1,100 @@
+# Azure Pipelines - Business Analytics Platform
+#
+# Minimal CI. Verifies that each app's dependencies install cleanly and that
+# any tests pass. Backend and frontend run as independent parallel jobs, so a
+# failure in one still reports results for the other.
+# No deployment yet - that gets added once there is a service connection.
+
+trigger:
+  branches:
+    include:
+      - main
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  pythonVersion: '3.12'
+  nodeVersion: '22.x'
+  # Azure Pipelines does not set CI by default. Tools like Vitest rely on it to
+  # disable watch mode, which would otherwise hang the agent.
+  CI: true
+
+jobs:
+
+- job: backend
+  displayName: 'Backend'
+  steps:
+
+  - task: UsePythonVersion@0
+    displayName: 'Use Python $(pythonVersion)'
+    inputs:
+      versionSpec: '$(pythonVersion)'
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    workingDirectory: backend
+    displayName: 'Install backend dependencies'
+
+  - script: |
+      ruff check .
+    workingDirectory: backend
+    displayName: 'Lint backend'
+  
+
+  - script: |
+      python -c "from app.main import app; print('App imports OK')"
+    workingDirectory: backend
+    displayName: 'Verify app imports'
+
+  - script: |
+      pip install pytest
+      pytest
+      rc=$?
+      # exit code 5 = no tests collected. Remove this guard once tests exist.
+      if [ $rc -eq 5 ]; then echo "No tests yet - skipping."; exit 0; fi
+      exit $rc
+    workingDirectory: backend
+    displayName: 'Run backend tests'
+
+- job: frontend
+  displayName: 'Frontend'
+  steps:
+
+  - task: NodeTool@0
+    displayName: 'Use Node $(nodeVersion)'
+    inputs:
+      versionSpec: '$(nodeVersion)'
+
+  - script: |
+      npm ci
+    workingDirectory: frontend
+    displayName: 'Install frontend dependencies'
+
+  - script: |
+      # No lint script yet. This is a no-op until one is added to package.json.
+      npm run lint --if-present
+    workingDirectory: frontend
+    displayName: 'Lint frontend'
+
+  - script: |
+      npm run format:check --if-present
+    workingDirectory: frontend
+    displayName: 'Check frontend formatting'
+
+  - script: |
+      npm run build --if-present
+    workingDirectory: frontend
+    displayName: 'Build frontend'
+
+  - script: |
+      # No test script yet - mirrors the pytest exit-5 guard on the backend.
+      npm run test --if-present
+    workingDirectory: frontend
+    displayName: 'Run frontend tests'
