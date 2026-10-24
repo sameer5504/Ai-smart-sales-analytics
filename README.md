@@ -1,141 +1,130 @@
-# Business Analytics Platform
+# AI Smart Sales Analytics
 
-Simple business analytics platform with a FastAPI backend and a React/Vite frontend.
+A web platform that turns a small business's raw sales export into a clear dashboard, a revenue forecast and an AI assistant that answers questions about the data in plain language.
 
-This document covers **manual deployment** to Azure App Service. There is no CI/CD pipeline for this — deployment is a deliberate, manual step you run from your own machine.
+Upload a CSV or Excel file, confirm how its columns map to the standard fields, and the platform cleans the data, calculates the key business metrics and forecasts next month's revenue.
 
-## Prerequisites
+![Walkthrough: sign up, upload a sales file, map columns, explore the dashboard and forecast](docs/media/demo-walkthrough.gif)
 
-- Azure subscription with Contributor access to the target resource group
-- Azure CLI (`az`) installed and logged in (`az login`)
-- Python 3.12.x and Node.js 22 LTS / npm 10.x installed locally (needed to build before packaging)
-- An Azure Database for PostgreSQL (Flexible Server) instance already provisioned, with a database created for this app
+> 🎬 [Full-quality walkthrough video (MP4)](docs/media/demo-walkthrough.mp4)
 
-## Required Azure resources
+---
 
-- Resource Group (e.g. `AI26s-Team-B`)
-- App Service Plan (Linux, Python 3.12 runtime)
-- App Service / Web App (e.g. `app-ai26s-teamb-api-dev`)
-- Azure Database for PostgreSQL Flexible Server
+## Features
 
-Adjust names/region to match your environment.
+**Smart data upload and column mapping**
+Every store exports sales data differently. The platform reads any CSV or Excel export, recognises common column names automatically (for example `Invoice No.` → Order ID, `Units Sold` → Quantity) and lets the user fix anything it couldn't match before the data is saved.
 
-## Required application settings / environment variables
+**Automatic data cleaning**
+Duplicate rows are removed, rows missing required fields are dropped, blank optional values are filled in, and the user sees a clear summary of exactly what happened to their data.
 
-Set these under App Service → Configuration → Application settings (or via `az webapp config appsettings set`):
+**Business dashboard**
+Total revenue, units sold, number of orders, average order value and month-on-month growth, with daily / weekly / monthly views, date-range and product filters, a performance-over-time chart and top / lowest-selling products.
 
-- `JWT_SECRET_KEY` — secret used to sign JWTs
-- `DB_HOST` — Postgres server hostname
-- `DB_PORT` — Postgres port (defaults to `5432` if unset)
-- `DB_NAME` — database name
-- `DB_USER` — database user
-- `DB_PASSWORD` — database password
+**Revenue forecasting**
+Next month's revenue is predicted by a LightGBM model trained on daily sales history with holiday and calendar features, with an optional Azure ML AutoML endpoint.
 
-For local development, copy `backend/.env.example` to `backend/.env` and fill these in — the backend loads them via `python-dotenv`.
+**AI assistant**
+A chat assistant powered by Azure OpenAI (GPT-4o) that answers questions such as *"Which products earned the most?"* or *"What's the forecast for next month?"*, grounded in the user's own uploaded data.
 
-## Backend deployment steps
+**Anomaly detection and reports**
+Rule-based anomaly detection at store and product level, plus downloadable reports generated from the dashboard.
 
-1. Build the frontend first (see "Frontend build" below) and copy the output into `backend/static/`.
-2. From the repo root, generate the deployment zip:
-   ```bash
-   python make-deploy-zip.py
-   ```
-   Always use this script rather than PowerShell's `Compress-Archive` — `Compress-Archive` writes path separators that break on Linux (`ModuleNotFoundError: No module named 'app'`).
-3. Deploy the zip:
-   ```bash
-   az webapp deployment source config-zip \
-     -n <app-service-name> -g <resource-group> --src backend-deploy.zip
-   ```
-4. Set the App Service Startup Command to run gunicorn with the Uvicorn worker:
-   ```
-   gunicorn app.main:app -k uvicorn.workers.UvicornWorker --bind=0.0.0.0:$PORT
-   ```
-5. Set the application settings the app reads from the environment. `.env` is not
-   deployed, so anything only in that file is absent in production:
-   ```bash
-   az webapp config appsettings set -n <app-service-name> -g <resource-group> \
-     --settings AZURE_FORECAST_ENDPOINT="<scoring uri>" AZURE_FORECAST_KEY="<key>"
-   ```
-   These two are optional. Without them the revenue forecast is served by the model
-   committed at `backend/models/revenue_model.joblib` instead of the Azure ML endpoint —
-   a working forecast, just a less accurate one. Nothing fails and nothing is logged at
-   startup, so if the forecast should be coming from the endpoint, check these are set.
+**Secure multi-user accounts**
+JWT authentication with rotating refresh tokens; every user's files are stored in their own isolated folder in Azure Blob Storage.
 
-## Frontend build
+## Screenshots
+
+| | |
+|---|---|
+| ![Landing page](docs/media/01-landing.png) **Landing page** | ![Sign up](docs/media/02-sign-up.png) **Sign up** |
+| ![Upload](docs/media/03-upload.png) **Upload a sales file and choose its currency** | ![Column mapping](docs/media/04-column-mapping.png) **Review the suggested column mapping** |
+| ![Data cleaning](docs/media/05-data-cleaning.png) **Data cleaning summary** | ![Dashboard](docs/media/06-dashboard.png) **Dashboard KPIs and filters** |
+| ![AI assistant](docs/media/10-ai-assistant.png) **AI assistant** | ![My files](docs/media/11-my-files.png) **My Files** |
+
+**Performance over time**
+![Revenue trend](docs/media/07-revenue-trend.png)
+
+**Top and lowest-selling products**
+![Top products](docs/media/08-top-products.png)
+
+**Revenue forecast**
+![Forecast](docs/media/09-forecast.png)
+
+*Screenshots use a synthetic demo dataset of ~6,000 transactions for a specialty food store.*
+
+## Tech stack
+
+| Layer | Technologies |
+|---|---|
+| Frontend | React 18, Vite, React Router, Recharts, Vitest |
+| Backend | Python 3.12, FastAPI, pandas, Pydantic |
+| Machine learning | LightGBM, scikit-learn, Azure ML AutoML |
+| AI | Azure OpenAI (GPT-4o), Azure Key Vault |
+| Data and storage | PostgreSQL (Azure Database for PostgreSQL), Azure Blob Storage |
+| Auth | JWT access tokens and rotating refresh-token cookies, bcrypt |
+| DevOps | Azure App Service, Azure DevOps pipelines, Ruff, ESLint, Prettier, Husky |
+
+## Project structure
+
+```
+backend/
+  app/
+    auth/               JWT auth, refresh tokens
+    data_pipeline/      parsing, column mapping, validation, cleaning
+    forecast/           forecasting models and API
+    anomaly/ services/  store and product anomaly detection
+    chatbot/            AI assistant (Azure OpenAI with data grounding)
+    recommendations/    recommendation contract and provider
+    storage/            Azure Blob and local storage backends
+  models/               trained forecasting model
+frontend/
+  src/features/         auth, upload, dashboard, forecast, chatbot, files, reports
+docs/                   design notes, data contracts, model research
+tests/                  backend and mapping tests
+```
+
+## Running locally
+
+**Backend** (Python 3.12):
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env         # then fill in the values
+python -m app.main           # http://127.0.0.1:8000
+```
+
+**Frontend** (Node 22):
 
 ```bash
 cd frontend
 npm install
-npm run build
+npm run dev                  # http://localhost:5173
 ```
 
-Copy the contents of `frontend/dist/` into `backend/static/` before running `make-deploy-zip.py`. The backend serves this directory directly at `/assets` and falls back to `index.html` for client-side routes, so React Router works correctly on a direct page load or refresh.
+The backend needs a PostgreSQL database and, for file storage and the AI assistant, Azure Blob Storage and Azure OpenAI credentials. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for the full configuration and Azure deployment guide.
 
-## Dependency installation
-
-Backend:
-```bash
-cd backend
-python -m venv .venv
-.venv\Scripts\activate.bat
-pip install -r requirements.txt
-```
-
-Frontend: see "Frontend build" above.
-
-## Starting and verifying the application
-
-Local development:
-```bash
-# backend
-cd backend
-python -m app.main
-# frontend (separate terminal)
-cd frontend
-npm run dev
-```
-The backend runs on `http://127.0.0.1:8000`; the frontend dev server is usually `http://localhost:5173`.
-
-After deploying to Azure:
-1. Check `https://<app-service-name>.azurewebsites.net/api/health` — should return `{"message": "Backend is running"}`.
-2. Open the root URL to confirm the frontend loads and can log in.
-
-## Azure Portal configuration notes
-
-- Startup Command: App Service → Configuration → General settings → Startup Command (see step 4 above).
-- Python version: Configuration → General settings → Stack settings → confirm Python 3.12.
-- Database firewall: allow the App Service's outbound IP (or enable "Allow access to Azure services") on the Postgres Flexible Server's networking settings, or the backend won't be able to connect.
-
-## Assumptions and limitations
-
-- This is a single-instance manual deployment; there is no CI/CD pipeline by design.
-- The frontend build output is not committed to the repository — it must be built and copied into `backend/static/` before each deployment.
-- `backend-deploy.zip` is a local build artifact (git-ignored) — regenerate it with `make-deploy-zip.py` whenever you redeploy.
-
-## Tests
-
-Backend and shared mapping-logic tests (run from the repo root so `src/`
-is importable):
+**Tests:**
 
 ```bash
-pip install -r backend/requirements.txt
 python -m pytest tests backend/tests
+cd frontend && npm test
 ```
 
-Frontend tests:
+## My contributions
 
-```bash
-cd frontend
-npm test
-```
+I worked across the data pipeline, the frontend and the delivery tooling:
 
-## Required versions
+- **Column mapping**: column-name aliases, automatic column matching, the mapping contract, and the manual column-mapping review screen with the data preview and cleaning summary
+- **Dashboard**: total revenue KPI and the interactive forecast visualization
+- **Reports**: report generation, storage and download
+- **DevOps**: CI/CD pipeline, lint and format enforcement in CI, and the manual deployment packaging with static frontend serving
 
-Backend:
-- Python 3.12.x
+## Team
 
-Frontend:
-- Node.js 22 LTS
-- npm 10.x
+Built as a team project during a software engineering training program by:
 
-Backend packages are pinned in `backend/requirements.txt`, and frontend package versions are listed in `frontend/package.json`.
+Samir Ali · Hana Izzdeen · Maen Foqaha · Alzahra Nassif · Omar Kmail · Omar Haj Daoud · Ahmad Nasasra
